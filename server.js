@@ -1,31 +1,24 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const app = express();
+//gujranwala12
 
+dotenv.config({path: './config.env'});
+const DB = process.env.DATABASES;
+const PORT = process.env.PORT;
 
-const MongoClient = require('mongodb').MongoClient
-let db;
-
-MongoClient.connect('mongodb://amanamana606:19ybachO_@localhost:27017/Amandb', (err, client) => {
-  if (err) throw err
-
- db = client.db('Amndb')
-
+mongoose.connect(DB) .then(()=>{
+    console.log("succedd")
+}).catch((err)=> {
+    console.log( "there is an error");
 })
 
-
-
-
-app.get(( req, res )=>{
-
-     db.collection('users').find().toArray((err, result) => {
-    if (err) throw err
-
-    //console.log(result)
-    app.send("This is my result " + result);
-  })
+app.get('/', (req, res)=> {
+    res.send("This is express ");
+})
     
-})
 
-app.listen(3000, (req, res)=> {
-    console.log("app is listening on poor 3000");
+app.listen((req, res)=> {
+    console.log(`app is listening on port ${PORT}`);
 })
