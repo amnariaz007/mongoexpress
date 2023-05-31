@@ -2,13 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = express();
+const MySchemaModel = require('./models/channel');
 //gujranwala12
 
 
 dotenv.config({path: './config.env'});
-//const UsersList = require('./models/mySchema');
 const DB = process.env.DATABASES;
-const PORT = process.env.PORT;
 
 mongoose.connect(DB) .then(()=>{
     console.log("succedd")
@@ -16,11 +15,22 @@ mongoose.connect(DB) .then(()=>{
     console.log( "there is an error");
 })
 
+
 app.get('/', (req, res)=> {
-    res.send("This is express ");
+    res.send("this is express ")
+})
+
+app.get('/insert', (req, res)=> {
+     var MySchemamodel = new MySchemaModel();
+     MySchemamodel.Name = "Aman"
+     MySchemamodel.Email = "amanamana606@gmail.com"
+     MySchemamodel.Password = "amn1234"
+
+    MySchemamodel.save()
 })
     
 
-app.listen((req, res)=> {
-    console.log(`app is listening on port ${PORT}`);
+
+app.listen( 3000, (req, res)=> {
+    console.log("app is listening on port 3000");
 })
