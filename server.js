@@ -6,13 +6,16 @@ const MySchemaModel = require('./models/channel');
 //gujranwala12
 
 
-dotenv.config({path: './config.env'});
-const DB = process.env.DATABASES;
+//dotenv.config({path: './config.env'});
+//const DB = process.env.DATABASES;
 
-mongoose.connect(DB) .then(()=>{
+const DB = 'mongodb+srv://amanamana606:gujranwala12@cluster0.wqncj59.mongodb.net/Amnaaa?retryWrites=true&w=majority';
+
+
+mongoose.connect(DB,{ useNewUrlParser: true}).then(()=>{
     console.log("succedd")
 }).catch((err)=> {
-    console.log( "there is an error");
+    console.log( "No connection");
 })
 
 
@@ -25,8 +28,14 @@ app.get('/insert', (req, res)=> {
      MySchemamodel.Name = "Aman"
      MySchemamodel.Email = "amanamana606@gmail.com"
      MySchemamodel.Password = "amn1234"
-
-    MySchemamodel.save()
+     MySchemamodel.Age = 20
+     MySchemamodel.profession = "I'm a Blockchain Dev by proffesion"
+    MySchemamodel.save().then((MySchemamodel)=> {
+      console.log(MySchemamodel)
+    }).catch((err)=>{
+      console.log("There is an error");
+    })
+    res.send(MySchemamodel);
 })
     
 

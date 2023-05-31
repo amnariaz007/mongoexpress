@@ -14,7 +14,15 @@ const MySchema = new mongoose.Schema({
         type : String,
         required: true
     },
-})
+    Age: {
+        type : Number,
+        required: true
+    },
+    profession : {
+        type : String,
+        required: true 
+    },
+} , {timestamps: true})
 
 const MySchemaModel = mongoose.model("channel", MySchema)
 
