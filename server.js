@@ -23,8 +23,12 @@ app.get('/', (req, res)=> {
     res.send("this is express ")
 })
 
+app.use(express.json());
+
+var MySchemamodel = new MySchemaModel();
+//how to insert data into Database through Nodejs
 app.get('/insert', (req, res)=> {
-     var MySchemamodel = new MySchemaModel();
+     
      MySchemamodel.Name = "Aman"
      MySchemamodel.Email = "amanamana606@gmail.com"
      MySchemamodel.Password = "amn1234"
@@ -36,6 +40,39 @@ app.get('/insert', (req, res)=> {
       console.log("There is an error");
     })
     res.send(MySchemamodel);
+})
+
+
+app.get('/Get', (req,res)=>{
+    MySchemaModel.find().then((MySchemaModel)=>{
+        //console.log(result)
+        res.send(MySchemaModel);
+    }).catch((err)=>{
+        console.log("there is an error")
+    })
+    //res.send(result);
+});
+
+
+app.get('/GetId', (req,res)=>{
+    MySchemaModel.findById('64772b27a7c12aefc9e8026b').then((MySchemaModel)=>{
+        res.send(MySchemaModel)
+        //res.send(result);
+    }).catch((err)=>{
+        console.log("there is an error")
+    })
+})
+
+app.post('/postdata', async (req, res)=> {
+    try {
+        const MySchemamodel = await MySchemaModel.create(req.body);
+        res.status(200).json(MySchemamodel);
+
+    }catch(err){
+        console.log(err.message)
+        res.status(500).json({message: err.message});
+    }
+
 })
     
 
