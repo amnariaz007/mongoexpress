@@ -7,7 +7,6 @@ app.get('/', (req,res)=> {
     res.send("This is server running");
 })
 
-
 app.get('/mail', SendMail)
 
 
