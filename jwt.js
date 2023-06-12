@@ -4,7 +4,6 @@ const app = express();
 const jwt = require('jsonwebtoken');
 
 
-
 const createToken = async() => {
    const token = await jwt.sign({ id: '64772b27a7c12aefc9e8026b' }, 'Thisisammansheisworkingonmernpracticesideforlearningpurpose', 
    { expiresIn : '2 minutes'});
@@ -15,15 +14,11 @@ const createToken = async() => {
 }
 
 
-
-
 createToken();
 
 app.get('/', (req, res)=> {
     res.send("this is express ")
 })
-
-
 
 
 app.listen( 3000, (req, res)=> {

@@ -22,14 +22,9 @@ app.use('/user', Userrouter);
 app.use('/note', Noterouter);
 
 
-
-
 app.get('/', (req, res)=> {
     res.send("this is express ")
 })
-
-
-
 
 
 app.listen( 3000, (req, res)=> {

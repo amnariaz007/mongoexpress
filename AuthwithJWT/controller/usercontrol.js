@@ -22,10 +22,6 @@ try{
         Name : Name
     })
 
-
-
-
-
     const createToken = async() => {
         const token = await jwt.sign({ Email : result.Email, id: result._id }, "MYJWTAPI")
         res.status(200).json({user: result, token: token })
@@ -36,20 +32,11 @@ try{
      }
      
      
-     
-     
-    
      createToken();
 }catch (err){
     console.log(err);
     res.status(500).json({message: "there is any error"})
 }
-
-
-
-
-
-
 
 }
 
@@ -69,11 +56,6 @@ try{
         return res.status(404).json({message: "invalid password"})
     }
 
-
-
-
-
-
     const createToken = async() => {
         const token = await jwt.sign({ Email : existuser.Email, id: existuser._id }, "MYJWTAPI")
         res.status(200).json({user: existuser, token: token })
@@ -83,10 +65,6 @@ try{
         console.log(uservver);
      }
      
-     
-     
-     
-    
      createToken();
 }catch (err){
     console.log(err);
@@ -94,11 +72,6 @@ try{
 }
 
 
-
-
-
-
-    
 }
 
 module.exports = {SignIn, SignUp}

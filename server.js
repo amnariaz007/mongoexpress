@@ -76,7 +76,6 @@ app.post('/postdata', async (req, res)=> {
 })
     
 
-
 app.listen( 3000, (req, res)=> {
     console.log("app is listening on port 3000");
 })
